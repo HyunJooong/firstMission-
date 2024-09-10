@@ -19,13 +19,14 @@ public class Calender {
         int nextMonth = month == 12 ? 1 : month + 1;
         int nextYear = month == 12 ? year + 1 : year;
 
-        getPreviousMonth(previousYear,previousMonth);
+        getPreviousMonth(previousYear, previousMonth);
         System.out.println();
         getThisYear(year, month);
         System.out.println();
-        getNextYear(nextYear,nextMonth);
+        getNextYear(nextYear, nextMonth);
     }
 
+    //다음달
     private static void getNextYear(int year, int month) {
 
         //해당 월 달력 만들기
@@ -33,6 +34,7 @@ public class Calender {
 
         //해당 달 시작 요일 변수
         int firstDay = thisCalender.getDayOfWeek().getValue();
+
 
         System.out.println("[" + year + "년 " + month + "월" + "]");
         System.out.print("일" + "\t" + "월" + "\t" + "화" + "\t" + "수" + "\t" + "목" + "\t" + "금" + "\t" + "토");
@@ -86,6 +88,7 @@ public class Calender {
         }
     }
 
+    //이전달
     private static void getPreviousMonth(int previousYear, int previousMonth) {
 
         //해당 월 달력 만들기
@@ -93,6 +96,7 @@ public class Calender {
 
         //해당 달 시작 요일 변수
         int firstDay = thisCalender.getDayOfWeek().getValue();
+
 
         System.out.println("[" + previousYear + "년 " + previousMonth + "월" + "]");
         System.out.print("일" + "\t" + "월" + "\t" + "화" + "\t" + "수" + "\t" + "목" + "\t" + "금" + "\t" + "토");
