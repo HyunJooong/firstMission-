@@ -1,59 +1,47 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Lotto {
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
-        Random rand = new Random();
+
         System.out.println("[로또 당첨 프로그램]");
 
+        System.out.print("로또 개수를 입력해주세요(숫자 1~10):");
+        int lottoCnt = sc.nextInt();
 
-        ArrayList<Integer> lottoNumber = new ArrayList();
-        int[] lottoNumberArray = new int[50];
+        System.out.println("[로또 결과]");
+        int[] rstLotto = newLotto();
 
-        //아스키 코드로 넘버 만들기
-        char alphaNum = 'A';
-        System.out.print("로또 개수를 입력해 주세요(숫자 1~10):");
-        int lottoCount = sc.nextInt();
+        System.out.println(rstLotto);
 
-        //첫번째 반복문에서 각 로또 순서 출력 후 아스키 코드 하나씩 더하기 
-        for (int i = 0; i < lottoCount; i++) {
-            System.out.print(alphaNum + "\t");
-            alphaNum++;
-            //두번째 반복문에서 로또 번호 랜덤 출력
-            for (int j = 0; j < 5; j++) {
-                int backNumber = rand.nextInt(45) + 1;
-                lottoNumberArray[i] = backNumber;
-                lottoNumber.add(backNumber);
-                System.out.print(backNumber + "\t");
+    }
+
+    //로또 결과
+    public static int[] lottoRst(){
+        int[] rstLotto = new int[6];
+        for(int i = 0; i < rstLotto.length; i++){
+            rstLotto[i] = new Random().nextInt(45) + 1;
+        }
+        Arrays.sort(rstLotto);
+        return rstLotto;
+    }
+
+    //로또 생성
+    public static int[] newLotto() {
+        int[] newLotto = new int[6];
+
+        for (int i = 0; i < newLotto.length; i++) {
+            newLotto[i] = new Random().nextInt(45) + 1; // 0빼고 45까지 숫자 랜덤 돌리기
+            for (int j = 0; j < i; j++) {
+                if (newLotto[j] == newLotto[i]) { // 중복제거
+                    i--;
+                }
             }
-            //두번째 반복문 끝나면 줄 바꿈
-            System.out.println();
         }
-
-        System.out.println("[로또 발표]");
-        for (int i = 0; i < 5; i++) {
-            int resultNum = rand.nextInt(45) + 1;
-            System.out.print(resultNum + "\t");
-        }
-        System.out.println();
-
-        char alphaSecondNum = 'A';
-        System.out.println("[내 로또 결과]");
-        for (int i = 0; i < lottoCount; i++) {
-            System.out.print(alphaSecondNum + "\t");
-            alphaSecondNum++;
-            for (int j = 0; j < lottoNumber.size(); j++) {
-                System.out.print(lottoNumber.get(j) + "\t");
-               /* if (j % 5 == 0) {
-                    System.out.println();
-                }*/
-            }
-            System.out.println();
-        }
-
-
+        Arrays.sort(newLotto);
+        return newLotto;
     }
 }
