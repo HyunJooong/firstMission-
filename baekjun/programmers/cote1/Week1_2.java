@@ -15,7 +15,7 @@ public class Week1_2 {
             System.out.print(name);
         };
     }
-
+    //조합 문제
     public static int solution(String[] names) {
         int answer = 0;
 
